@@ -1,36 +1,28 @@
-"use strict"
 
-const checkBoxRef = document.querySelector("#theme-switch-toggle")
-const bodyRef = document.querySelector("body")
 
-const Theme = {
-  LIGHT: 'light-theme',
-  DARK: 'dark-theme',
-};
+const change = document.querySelector("#theme-switch-toggle")
+change.addEventListener("click", toggleTheme)
 
-checkBoxRef.checked = JSON.parse(localStorage.getItem("checkbox"))
-changeTheme()
-
-function changeTheme() {
-  if (checkBoxRef.checked) {
-    bodyRef.classList.add(Theme.DARK)
-  } else if (!checkBoxRef.checked)
-
-  {bodyRef.classList.remove(Theme.LIGHT)}
+function setTheme(themeName) {
+  localStorage.setItem("theme", themeName);
+  document.body.className = themeName;
 }
 
-checkBoxRef.addEventListener("change", onChange)
-
-function onChange(e) {
-  if (e.currentTarget.checked)
-{
-  bodyRef.classList.add(Theme.DARK)
-  bodyRef.classList.remove(Theme.LIGHT)
-  localStorage.setItem("checkbox", checkBoxRef.checked)
-} else {
-  bodyRef.classList.add(Theme.LIGHT)
-  bodyRef.classList.remove(Theme.DARK)
-  localStorage.setItem("checkbox", checkBoxRef.checked)
+function toggleTheme() {
+  if (localStorage.getItem("theme") === "light-theme") {
+  setTheme ("dark-theme");
+} else  {
+  setTheme ("light-theme");
+}
 }
 
-}
+(function () {
+  if (localStorage.getItem("theme") === "light-theme") {
+    setTheme("light-theme");
+    document.getElementById("theme-switch-toggle").checked = false;
+  } else {
+    setTheme("dark-theme");
+    document.getElementById("theme-switch-toggle").checked = true;
+  }
+})();
+
