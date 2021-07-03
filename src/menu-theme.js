@@ -9,10 +9,10 @@ function setTheme(themeName) {
 }
 
 function toggleTheme() {
-  if (localStorage.getItem("theme") === "light-theme") {
-  setTheme ("dark-theme");
-} else  {
+  if (localStorage.getItem("theme") === "dark-theme") {
   setTheme ("light-theme");
+} else  {
+  setTheme ("dark-theme");
 }
 }
 
