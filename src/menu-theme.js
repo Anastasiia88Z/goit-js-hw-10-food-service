@@ -17,12 +17,11 @@ function toggleTheme() {
 }
 
 (function () {
-  if (localStorage.getItem("theme") === "light-theme") {
-    setTheme("light-theme");
-    document.getElementById("theme-switch-toggle").checked = false;
-  } else {
+  if (localStorage.getItem("theme") === "dark-theme") {
     setTheme("dark-theme");
     document.getElementById("theme-switch-toggle").checked = true;
+  } else {
+    setTheme("light-theme");
   }
 })();
 
